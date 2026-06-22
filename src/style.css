@@ -1,0 +1,252 @@
+@import "tailwindcss";
+
+@property --glow-strength {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.08;
+}
+
+:root {
+  color: #f8f7f2;
+  background: #020202;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  background: #020202;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body::selection {
+  background: #ff2aa3;
+  color: #020202;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0 0.7px, transparent 0.9px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.045) 0 0.8px, transparent 1px);
+  background-position:
+    0 0,
+    18px 26px;
+  background-size:
+    42px 42px,
+    58px 58px;
+  opacity: 0.22;
+  pointer-events: none;
+  content: "";
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-shell {
+  background:
+    radial-gradient(ellipse 72% 48% at 50% 0%, rgba(174, 216, 218, 0.12), transparent 56%),
+    linear-gradient(90deg, #020202 0%, #050706 20%, #0a0d0d 48%, #040505 76%, #020202 100%),
+    linear-gradient(180deg, #020202 0%, #050505 62%, #0a0a0a 100%);
+}
+
+.brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.16);
+}
+
+.site-nav a {
+  position: relative;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease;
+}
+
+.site-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.3);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: #ffffff;
+  outline: 0;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after {
+  opacity: 0.85;
+  transform: scaleX(1);
+}
+
+.hero {
+  --active-accent: #ff2aa3;
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 18% 74% at 57% 0%, rgba(214, 239, 236, 0.28), rgba(155, 195, 195, 0.1) 28%, transparent 68%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.98) 0%, transparent 22%, transparent 66%, rgba(0, 0, 0, 0.96) 100%),
+    radial-gradient(circle at 58% 74%, color-mix(in srgb, var(--active-accent), transparent 92%), transparent 22rem);
+  content: "";
+}
+
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(180, 218, 220, 0.07), transparent 38%),
+    radial-gradient(ellipse 12% 54% at 57% 18%, rgba(235, 255, 252, 0.16), transparent 72%);
+  content: "";
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 34%, transparent 82%);
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 34%, transparent 82%);
+  pointer-events: none;
+}
+
+.water-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle, rgba(220, 242, 241, 0.34) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.24) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(190, 226, 225, 0.2) 0 0.8px, transparent 1.4px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.16) 0 0.7px, transparent 1.3px);
+  background-position:
+    8% 18%,
+    42% 12%,
+    78% 28%,
+    20% 76%;
+  background-size:
+    180px 160px,
+    260px 220px,
+    150px 210px,
+    230px 180px;
+  opacity: 0.42;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 72%, transparent 100%);
+  pointer-events: none;
+}
+
+.lure-stage::after {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  z-index: 0;
+  width: min(30vw, 420px);
+  height: 42px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--active-accent), transparent 82%);
+  content: "";
+  filter: blur(34px);
+  opacity: calc(0.14 + (var(--stage-glow, 1) * 0.34));
+  pointer-events: none;
+  transform: translateX(-50%) perspective(500px) rotateX(68deg);
+  transition:
+    background 700ms ease,
+    opacity 700ms ease;
+}
+
+.lure-card {
+  --glow-strength: 0.08;
+  z-index: 2;
+  transform:
+    translateX(calc(var(--offset) * 84%))
+    translateZ(calc((1 - max(var(--offset), var(--offset) * -1)) * 180px))
+    rotateY(calc(var(--offset) * -30deg))
+    rotateX(var(--tilt-y))
+    rotateZ(calc(var(--tilt-x) * 0.16))
+    scale(calc(1 - max(var(--offset), var(--offset) * -1) * 0.32));
+  transition:
+    --glow-strength 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 520ms ease,
+    opacity 520ms ease,
+    transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lure-card img {
+  mix-blend-mode: var(--blend-mode, normal);
+  filter:
+    brightness(calc(1.02 + (var(--glow-strength) * 0.04)))
+    contrast(calc(1.14 - (var(--glow-strength) * 0.02)))
+    saturate(calc(1.08 + (var(--glow-strength) * 0.04)))
+    hue-rotate(calc(var(--offset) * 38deg));
+  transition: filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.best-seller-dot {
+  color: rgba(255, 255, 255, 0.55);
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.best-seller-dot::before {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  content: "";
+}
+
+.best-seller-dot:hover,
+.best-seller-dot:focus-visible {
+  color: #ffffff;
+  outline: 0;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 980px) {
+  .site-nav a {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .lure-card {
+    transform:
+      translateX(calc(var(--offset) * 76%))
+      rotateY(calc(var(--offset) * -18deg))
+      rotateX(var(--tilt-y))
+      scale(calc(1 - max(var(--offset), var(--offset) * -1) * 0.24));
+  }
+}

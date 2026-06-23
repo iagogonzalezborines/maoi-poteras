@@ -165,12 +165,88 @@ a {
   pointer-events: none;
 }
 
+.hero-copy {
+  --copy-accent: var(--active-accent);
+  --copy-base-y: -50%;
+  transform: translateY(var(--copy-base-y));
+  transition:
+    filter 260ms ease,
+    opacity 260ms ease,
+    transform 260ms ease;
+  will-change: filter, opacity, transform;
+}
+
+.hero-copy.is-exiting {
+  filter: blur(3.5px);
+  opacity: 0;
+  transform: translateY(var(--copy-base-y)) translateY(8px);
+}
+
+.hero-copy.is-entering {
+  animation: copy-focus-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.copy-refract {
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.38),
+    0 8px 18px rgba(178, 222, 224, 0.08);
+}
+
+.hero-copy.is-entering .copy-refract {
+  animation: copy-refract-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.lure-color-word {
+  color: var(--copy-accent);
+  text-shadow:
+    0 0 1px color-mix(in srgb, var(--copy-accent), white 58%),
+    0 0 18px color-mix(in srgb, var(--copy-accent), transparent 70%),
+    0 12px 30px color-mix(in srgb, var(--copy-accent), transparent 84%);
+  transition:
+    color 520ms ease,
+    text-shadow 520ms ease;
+}
+
+@keyframes copy-focus-in {
+  from {
+    filter: blur(4px);
+    opacity: 0;
+    transform: translateY(var(--copy-base-y)) translateY(-8px);
+  }
+
+  62% {
+    filter: blur(0.45px);
+    opacity: 0.98;
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(var(--copy-base-y));
+  }
+}
+
+@keyframes copy-refract-in {
+  from {
+    text-shadow:
+      -1.5px 0 2px rgba(185, 232, 236, 0.28),
+      1.5px 0 2px color-mix(in srgb, var(--copy-accent), transparent 72%),
+      0 12px 26px rgba(178, 222, 224, 0.08);
+  }
+
+  to {
+    text-shadow:
+      0 0 1px rgba(255, 255, 255, 0.38),
+      0 8px 18px rgba(178, 222, 224, 0.08);
+  }
+}
+
 .lure-stage::after {
   position: absolute;
-  bottom: 5%;
-  left: 50%;
+  bottom: 2%;
+  left: 54%;
   z-index: 0;
-  width: min(30vw, 420px);
+  width: min(34vw, 520px);
   height: 42px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--active-accent), transparent 82%);
@@ -186,16 +262,23 @@ a {
 
 .lure-card {
   --glow-strength: 0.08;
+  --slot-scale: 1;
+  --slot-x: 50vw;
+  --slot-y: 50%;
+  left: var(--slot-x);
+  top: var(--slot-y);
   z-index: 2;
   transform:
-    translateX(calc(var(--offset) * 84%))
+    translate(-50%, -50%)
     translateZ(calc((1 - max(var(--offset), var(--offset) * -1)) * 180px))
     rotateY(calc(var(--offset) * -30deg))
     rotateX(var(--tilt-y))
     rotateZ(calc(var(--tilt-x) * 0.16))
-    scale(calc(1 - max(var(--offset), var(--offset) * -1) * 0.32));
+    scale(var(--slot-scale));
   transition:
     --glow-strength 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    left 760ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 760ms cubic-bezier(0.22, 1, 0.36, 1),
     filter 520ms ease,
     opacity 520ms ease,
     transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -209,6 +292,38 @@ a {
     saturate(calc(1.08 + (var(--glow-strength) * 0.04)))
     hue-rotate(calc(var(--offset) * 38deg));
   transition: filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.swim-diagram::before {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 190px;
+  background:
+    linear-gradient(180deg, rgba(220, 255, 249, 0.22), transparent 72%),
+    repeating-linear-gradient(
+      172deg,
+      rgba(255, 255, 255, 0.32) 0 1px,
+      transparent 1px 14px
+    );
+  content: "";
+  opacity: 0.22;
+  filter: blur(0.4px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.swim-diagram::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 10% 64% at 61% 0%, rgba(226, 255, 247, 0.2), transparent 72%),
+    radial-gradient(ellipse 18% 54% at 55% 12%, rgba(180, 230, 222, 0.1), transparent 76%);
+  content: "";
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .best-seller-dot {
@@ -239,12 +354,19 @@ a {
   .site-nav a {
     display: none;
   }
+
+  .hero-copy {
+    --copy-base-y: 0;
+  }
 }
 
 @media (max-width: 640px) {
   .lure-card {
+    left: 50%;
+    top: 50%;
     transform:
-      translateX(calc(var(--offset) * 76%))
+      translate(-50%, -50%)
+      translateX(calc(var(--offset) * 82%))
       rotateY(calc(var(--offset) * -18deg))
       rotateX(var(--tilt-y))
       scale(calc(1 - max(var(--offset), var(--offset) * -1) * 0.24));

@@ -1,4 +1,5 @@
 import maoiLabImage from '../assets/editorial/maoi-lab.png'
+import poteraAcid from '../assets/products/potera3-cut.png'
 
 const resources = [
   {
@@ -44,6 +45,71 @@ const performance = [
     copy: 'Pink, Blue y Acid nacen para cubrir situaciones distintas sin romper la coherencia de la coleccion.',
   },
 ]
+
+const swimFeatures = [
+  {
+    title: 'Equilibrio',
+    copy: 'Centro de gravedad optimizado para maxima estabilidad.',
+    icon: 'target',
+  },
+  {
+    title: 'Accion natural',
+    copy: 'Movimiento realista que provoca ataques.',
+    icon: 'wave',
+  },
+  {
+    title: 'Menos resistencia',
+    copy: 'Diseno hidrodinamico que mejora el rendimiento.',
+    icon: 'fin',
+  },
+]
+
+function DiagramIcon({ type }: { type: string }) {
+  if (type === 'wave') {
+    return (
+      <svg className="size-16 text-[#96f255]" viewBox="0 0 80 80" aria-hidden="true">
+        <path
+          d="M6 48c7-18 17-18 29 0s22 18 35-6"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth="2"
+        />
+        <path
+          d="M68 42l5 10 5-10"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+        />
+      </svg>
+    )
+  }
+
+  if (type === 'fin') {
+    return (
+      <svg className="size-16 text-[#96f255]" viewBox="0 0 80 80" aria-hidden="true">
+        <path
+          d="M14 52c17-26 33-36 53-37-10 11-18 24-26 34-9 4-18 6-27 3Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path d="M14 52c14-1 28-5 42-22" fill="none" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg className="size-16 text-[#96f255]" viewBox="0 0 80 80" aria-hidden="true">
+      <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="40" cy="40" r="15" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <circle cx="40" cy="40" r="5" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M40 6v68M6 40h68" stroke="currentColor" strokeWidth="1.3" />
+    </svg>
+  )
+}
 
 function AboutSection() {
   return (
@@ -137,6 +203,125 @@ function AboutSection() {
             </div>
           </div>
         </div>
+
+        <section
+          className="swim-diagram relative isolate min-h-[760px] overflow-hidden border border-white/8 bg-[#041011]/72 px-[clamp(24px,5.4vw,78px)] py-[clamp(54px,7vw,88px)] shadow-[0_28px_90px_rgba(0,0,0,0.32)] max-[980px]:min-h-0 max-[640px]:px-5"
+          aria-label="Diagrama de nado MAOI"
+        >
+          <div
+            className="absolute inset-0 -z-[2] bg-[radial-gradient(ellipse_at_62%_16%,rgba(202,242,235,0.16),transparent_34%),radial-gradient(ellipse_at_58%_70%,rgba(0,255,76,0.12),transparent_38%),linear-gradient(90deg,rgba(0,0,0,0.7),rgba(2,16,18,0.64)_48%,rgba(0,0,0,0.82))]"
+            aria-hidden="true"
+          />
+          <div className="water-particles opacity-45" aria-hidden="true" />
+
+          <div className="relative z-[2] grid max-w-[34rem] gap-6">
+            <div>
+              <h2 className="m-0 text-[clamp(2.6rem,4.8vw,5.1rem)] font-normal uppercase leading-[0.96] text-white">
+                Nado
+                <span className="block">perfecto</span>
+              </h2>
+              <p className="mt-6 text-[clamp(1rem,1.25vw,1.35rem)] uppercase tracking-[0.08em] text-white/64">
+                Equilibrio. Estabilidad. Atraccion.
+              </p>
+            </div>
+            <span className="h-px w-14 bg-[#96f255]" aria-hidden="true" />
+            <p className="m-0 max-w-[34ch] text-[1.02rem] leading-8 text-stone-300/72">
+              Disenada para mantener una posicion estable y un movimiento natural en cada caida y recogida.
+            </p>
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 z-[1] max-[980px]:relative max-[980px]:mt-14 max-[980px]:min-h-[520px] max-[640px]:min-h-[420px]">
+            <svg className="absolute inset-0 size-full" viewBox="0 0 1400 760" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="swim-arrow-blue" markerHeight="10" markerWidth="10" orient="auto" refX="8" refY="5">
+                  <path d="M0 0 10 5 0 10z" fill="#2bd8ff" />
+                </marker>
+                <marker id="swim-arrow-green" markerHeight="10" markerWidth="10" orient="auto" refX="8" refY="5">
+                  <path d="M0 0 10 5 0 10z" fill="#96f255" />
+                </marker>
+              </defs>
+              <path
+                d="M255 438c110 0 84-64 196-104 74-27 158-35 246-34"
+                fill="none"
+                stroke="#96f255"
+                strokeDasharray="7 14"
+                strokeLinecap="round"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M728 506c165-28 257-86 380-176"
+                fill="none"
+                markerEnd="url(#swim-arrow-blue)"
+                stroke="#2bd8ff"
+                strokeLinecap="round"
+                strokeWidth="2"
+              />
+              <path
+                d="M812 570c176-52 270-118 390-258"
+                fill="none"
+                stroke="#2bd8ff"
+                strokeLinecap="round"
+                strokeOpacity="0.42"
+                strokeWidth="1.2"
+              />
+              <path
+                d="M878 548c146-35 250-92 350-208"
+                fill="none"
+                markerEnd="url(#swim-arrow-blue)"
+                stroke="#7fe8ff"
+                strokeLinecap="round"
+                strokeOpacity="0.82"
+                strokeWidth="1.4"
+              />
+              <path
+                d="M925 218c112-104 183-126 296-146"
+                fill="none"
+                markerEnd="url(#swim-arrow-green)"
+                stroke="#96f255"
+                strokeLinecap="round"
+                strokeWidth="1.6"
+              />
+            </svg>
+
+            <img
+              className="absolute left-[54%] top-[48%] z-[2] w-[min(42vw,690px)] -translate-x-1/2 -translate-y-1/2 rotate-[59deg] drop-shadow-[0_0_40px_rgba(0,255,76,0.26)] max-[980px]:left-[58%] max-[980px]:w-[min(82vw,580px)] max-[640px]:left-1/2 max-[640px]:w-[118vw]"
+              src={poteraAcid}
+              alt=""
+            />
+
+            <div className="absolute left-[17%] top-[59%] z-[3] max-w-[15rem] max-[980px]:left-[6%] max-[980px]:top-[66%]">
+              <p className="m-0 text-lg font-medium uppercase tracking-[0.08em] text-[#96f255]">Caida</p>
+              <p className="mt-3 text-base leading-7 text-stone-200/70">Descenso recto y equilibrado</p>
+            </div>
+            <div className="absolute right-[21%] top-[68%] z-[3] max-w-[18rem] max-[980px]:right-[6%] max-[980px]:top-[76%]">
+              <p className="m-0 text-lg font-medium uppercase tracking-[0.16em] text-[#2bd8ff]">Nado</p>
+              <p className="mt-3 text-base leading-7 text-stone-200/72">
+                Movimiento natural que atrae en cualquier condicion
+              </p>
+            </div>
+            <div className="absolute right-[8%] top-[16%] z-[3] max-w-[16rem] max-[980px]:right-[4%] max-[980px]:top-[8%]">
+              <p className="m-0 text-lg font-medium uppercase tracking-[0.08em] text-[#96f255]">Recuperacion</p>
+              <p className="mt-3 text-base leading-7 text-stone-200/72">Nado estable y controlado</p>
+            </div>
+          </div>
+
+          <div className="relative z-[3] mt-[clamp(420px,39vw,520px)] grid grid-cols-3 border border-white/10 bg-black/30 backdrop-blur-md max-[980px]:mt-10 max-[820px]:grid-cols-1">
+            {swimFeatures.map((feature) => (
+              <article
+                className="grid grid-cols-[76px_1fr] items-center gap-6 border-r border-white/10 p-7 last:border-r-0 max-[820px]:border-b max-[820px]:border-r-0 max-[820px]:last:border-b-0"
+                key={feature.title}
+              >
+                <DiagramIcon type={feature.icon} />
+                <div>
+                  <h3 className="m-0 text-sm font-medium uppercase tracking-[0.2em] text-white/70">
+                    {feature.title}
+                  </h3>
+                  <p className="m-0 mt-3 text-sm leading-6 text-stone-300/72">{feature.copy}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
   )

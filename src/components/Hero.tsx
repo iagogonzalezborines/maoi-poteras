@@ -65,7 +65,7 @@ function Hero() {
 
   return (
     <main
-      className="hero relative isolate min-h-dvh overflow-hidden px-[clamp(32px,6vw,112px)] pb-[118px] pt-[132px] max-[980px]:grid max-[980px]:content-center max-[980px]:gap-7 max-[980px]:pt-28 max-[640px]:min-h-0 max-[640px]:px-5 max-[640px]:pb-[52px] max-[640px]:pt-28"
+      className="snap-section hero relative isolate min-h-dvh overflow-hidden px-[clamp(32px,6vw,112px)] pb-[118px] pt-[132px] max-[980px]:grid max-[980px]:content-center max-[980px]:gap-7 max-[980px]:pt-28 max-[640px]:min-h-0 max-[640px]:px-5 max-[640px]:pb-[52px] max-[640px]:pt-28"
       style={{ '--active-accent': activeLure.accent } as CSSProperties}
     >
       <div className="water-particles" aria-hidden="true" />

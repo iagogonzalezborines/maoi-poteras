@@ -28,6 +28,10 @@ body {
   overflow-x: hidden;
 }
 
+.snap-section {
+  min-height: 100svh;
+}
+
 body::selection {
   background: #ff2aa3;
   color: #020202;
@@ -296,9 +300,9 @@ a {
 
 .swim-diagram::before {
   position: absolute;
-  inset: 0 0 auto;
+  inset: -90px 0 auto;
   z-index: -1;
-  height: 190px;
+  height: 270px;
   background:
     linear-gradient(180deg, rgba(220, 255, 249, 0.22), transparent 72%),
     repeating-linear-gradient(
@@ -307,10 +311,10 @@ a {
       transparent 1px 14px
     );
   content: "";
-  opacity: 0.22;
+  opacity: 0.16;
   filter: blur(0.4px);
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 32%, rgba(0, 0, 0, 0.72) 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 32%, rgba(0, 0, 0, 0.72) 62%, transparent 100%);
   pointer-events: none;
 }
 
@@ -324,6 +328,114 @@ a {
   content: "";
   opacity: 0.9;
   pointer-events: none;
+}
+
+.swim-diagram {
+  background: transparent;
+  max-width: 100%;
+}
+
+.swim-diagram-bg {
+  background:
+    radial-gradient(ellipse 70% 34% at 60% 16%, rgba(202, 242, 235, 0.16), transparent 58%),
+    radial-gradient(ellipse 42% 34% at 58% 70%, rgba(0, 255, 76, 0.12), transparent 66%),
+    linear-gradient(90deg, rgba(2, 2, 2, 0.32), rgba(2, 16, 18, 0.58) 48%, rgba(2, 2, 2, 0.46));
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 12%, #000 28%, #000 74%, rgba(0, 0, 0, 0.66) 88%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 12%, #000 28%, #000 74%, rgba(0, 0, 0, 0.66) 88%, transparent 100%);
+}
+
+.swim-reveal,
+.swim-product,
+.swim-flow-lines {
+  opacity: 0;
+  will-change: opacity, filter, transform;
+}
+
+.swim-reveal {
+  filter: blur(12px);
+  transform: translateY(34px);
+  transition:
+    opacity 760ms ease,
+    filter 900ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.swim-product {
+  filter:
+    blur(18px)
+    drop-shadow(0 0 34px rgba(0, 255, 76, 0.16));
+  transform:
+    translate(-50%, -48%)
+    rotate(48deg)
+    scale(0.94);
+  transition:
+    opacity 980ms ease 180ms,
+    filter 1180ms ease 180ms,
+    transform 1180ms cubic-bezier(0.22, 1, 0.36, 1) 180ms;
+}
+
+.swim-flow-lines {
+  filter: blur(6px);
+  transition:
+    opacity 760ms ease 520ms,
+    filter 900ms ease 520ms;
+}
+
+.swim-flow-lines path {
+  stroke-dashoffset: 120;
+}
+
+.swim-diagram.is-visible .swim-reveal,
+.swim-diagram.is-visible .swim-product,
+.swim-diagram.is-visible .swim-flow-lines {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.swim-diagram.is-visible .swim-reveal {
+  transform: translateY(0);
+}
+
+.swim-diagram.is-visible .swim-product {
+  filter:
+    blur(0)
+    drop-shadow(0 0 40px rgba(0, 255, 76, 0.26));
+  transform:
+    translate(-50%, -50%)
+    rotate(48deg)
+    scale(1);
+}
+
+.swim-diagram.is-visible .swim-flow-lines path {
+  animation: swim-line-drift 1400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.swim-reveal-2 {
+  transition-delay: 420ms;
+}
+
+.swim-reveal-3 {
+  transition-delay: 560ms;
+}
+
+.swim-reveal-4 {
+  transition-delay: 700ms;
+}
+
+.swim-reveal-5 {
+  transition-delay: 820ms;
+}
+
+@keyframes swim-line-drift {
+  from {
+    stroke-dashoffset: 120;
+    opacity: 0;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
 }
 
 .best-seller-dot {

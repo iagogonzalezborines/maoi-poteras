@@ -5,9 +5,43 @@ import AboutSection from '../components/AboutSection'
 
 function HomeLayout() {
   const isScrolling = useRef(false)
+  const animationFrame = useRef<number | null>(null)
 
   useEffect(() => {
     const getSections = () => Array.from(document.querySelectorAll<HTMLElement>('.snap-section'))
+
+    const easeInOutCubic = (progress: number) =>
+      progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+    const animateScrollTo = (targetY: number) => {
+      const startY = window.scrollY
+      const distance = targetY - startY
+      const duration = 1250
+      const startTime = window.performance.now()
+
+      if (animationFrame.current) {
+        window.cancelAnimationFrame(animationFrame.current)
+      }
+
+      const step = (currentTime: number) => {
+        const elapsed = currentTime - startTime
+        const progress = Math.min(elapsed / duration, 1)
+        const easedProgress = easeInOutCubic(progress)
+
+        window.scrollTo(0, startY + distance * easedProgress)
+
+        if (progress < 1) {
+          animationFrame.current = window.requestAnimationFrame(step)
+          return
+        }
+
+        window.scrollTo(0, targetY)
+        animationFrame.current = null
+        isScrolling.current = false
+      }
+
+      animationFrame.current = window.requestAnimationFrame(step)
+    }
 
     const getCurrentIndex = () => {
       const sections = getSections()
@@ -25,19 +59,25 @@ function HomeLayout() {
 
     const goToSection = (direction: number) => {
       const sections = getSections()
-      const nextIndex = Math.min(Math.max(getCurrentIndex() + direction, 0), sections.length - 1)
+      const currentIndex = getCurrentIndex()
+      const nextIndex = Math.min(Math.max(currentIndex + direction, 0), sections.length - 1)
       const nextSection = sections[nextIndex]
+
+      if (nextIndex === currentIndex) {
+        return
+      }
 
       if (!nextSection) {
         return
       }
 
-      isScrolling.current = true
-      nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        nextSection.scrollIntoView({ block: 'start' })
+        return
+      }
 
-      window.setTimeout(() => {
-        isScrolling.current = false
-      }, 950)
+      isScrolling.current = true
+      animateScrollTo(nextSection.offsetTop)
     }
 
     const handleWheel = (event: WheelEvent) => {
@@ -75,6 +115,10 @@ function HomeLayout() {
     window.addEventListener('keydown', handleKeyDown)
 
     return () => {
+      if (animationFrame.current) {
+        window.cancelAnimationFrame(animationFrame.current)
+      }
+
       window.removeEventListener('wheel', handleWheel)
       window.removeEventListener('keydown', handleKeyDown)
     }

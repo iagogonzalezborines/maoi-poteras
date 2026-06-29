@@ -37,15 +37,15 @@ function LureCarousel({ lures, activeIndex, onSelect }: LureCarouselProps) {
         const isActive = index === activeIndex
         const slot =
           wrappedOffset < 0
-            ? { x: '6vw', y: '56%', scale: 0.7, z: 1 }
+            ? { x: '-16vw', y: '58%', scale: 0.48, z: 1 }
             : wrappedOffset > 0
-              ? { x: '94vw', y: '54%', scale: 0.72, z: 1 }
-              : { x: '52vw', y: '52%', scale: 1, z: 3 }
+              ? { x: '90vw', y: '52%', scale: 0.58, z: 1 }
+              : { x: '62vw', y: '51%', scale: 0.84, z: 3 }
 
         return (
           <button
             className={clsx(
-              'lure-card absolute grid aspect-[0.68] w-[min(38vw,560px)] cursor-pointer place-items-center border-0 bg-transparent transition-[filter,opacity,transform,left,top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none max-[980px]:w-[min(82vw,640px)] max-[640px]:w-[min(56vw,220px)]',
+              'lure-card absolute grid aspect-[0.68] w-[min(34vw,500px)] cursor-pointer place-items-center border-0 bg-transparent transition-[filter,opacity,transform,left,top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none max-[980px]:w-[min(78vw,560px)] max-[640px]:w-[min(60vw,260px)]',
               isActive ? 'opacity-100 blur-0' : 'opacity-25 blur-[7px]',
             )}
             key={lure.id}

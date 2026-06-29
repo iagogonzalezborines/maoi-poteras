@@ -10,7 +10,7 @@
   color: #f8f7f2;
   background: #020202;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Manrope", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -69,9 +69,9 @@ a {
 
 .site-shell {
   background:
-    radial-gradient(ellipse 72% 48% at 50% 0%, rgba(174, 216, 218, 0.12), transparent 56%),
-    linear-gradient(90deg, #020202 0%, #050706 20%, #0a0d0d 48%, #040505 76%, #020202 100%),
-    linear-gradient(180deg, #020202 0%, #050505 62%, #0a0a0a 100%);
+    radial-gradient(ellipse 58% 40% at 52% 0%, rgba(204, 225, 223, 0.12), transparent 58%),
+    linear-gradient(90deg, #010101 0%, #050706 20%, #08100b 48%, #040505 76%, #010101 100%),
+    linear-gradient(180deg, #010101 0%, #040404 62%, #090909 100%);
 }
 
 .brand-mark img {
@@ -116,8 +116,35 @@ a {
   transform: scaleX(1);
 }
 
+.site-nav-cta {
+  display: inline-grid;
+  min-height: 48px;
+  min-width: 132px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--active-accent), white 18%);
+  padding: 0 1.5rem;
+  color: var(--active-accent);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.site-nav-cta::after {
+  display: none;
+}
+
+.site-nav-cta:hover,
+.site-nav-cta:focus-visible {
+  background: color-mix(in srgb, var(--active-accent), transparent 86%);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--active-accent), transparent 72%);
+  color: #fff;
+}
+
 .hero {
-  --active-accent: #ff2aa3;
+  --active-accent: #00ff4c;
 }
 
 .hero::before {
@@ -125,9 +152,9 @@ a {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse 18% 74% at 57% 0%, rgba(214, 239, 236, 0.28), rgba(155, 195, 195, 0.1) 28%, transparent 68%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.98) 0%, transparent 22%, transparent 66%, rgba(0, 0, 0, 0.96) 100%),
-    radial-gradient(circle at 58% 74%, color-mix(in srgb, var(--active-accent), transparent 92%), transparent 22rem);
+    radial-gradient(ellipse 20% 74% at 56% 0%, rgba(214, 239, 236, 0.28), rgba(155, 195, 195, 0.08) 28%, transparent 68%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.78) 18%, transparent 38%, transparent 68%, rgba(0, 0, 0, 0.96) 100%),
+    radial-gradient(circle at 56% 76%, color-mix(in srgb, var(--active-accent), transparent 88%), transparent 24rem);
   content: "";
 }
 
@@ -136,7 +163,7 @@ a {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgba(180, 218, 220, 0.07), transparent 38%),
+    linear-gradient(180deg, rgba(180, 218, 220, 0.08), transparent 38%),
     radial-gradient(ellipse 12% 54% at 57% 18%, rgba(235, 255, 252, 0.16), transparent 72%);
   content: "";
   -webkit-mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 34%, transparent 82%);
@@ -193,7 +220,7 @@ a {
 .copy-refract {
   text-shadow:
     0 0 1px rgba(255, 255, 255, 0.38),
-    0 8px 18px rgba(178, 222, 224, 0.08);
+    0 12px 28px rgba(178, 222, 224, 0.08);
 }
 
 .hero-copy.is-entering .copy-refract {
@@ -204,11 +231,38 @@ a {
   color: var(--copy-accent);
   text-shadow:
     0 0 1px color-mix(in srgb, var(--copy-accent), white 58%),
-    0 0 18px color-mix(in srgb, var(--copy-accent), transparent 70%),
-    0 12px 30px color-mix(in srgb, var(--copy-accent), transparent 84%);
+    0 0 22px color-mix(in srgb, var(--copy-accent), transparent 66%),
+    0 16px 34px color-mix(in srgb, var(--copy-accent), transparent 82%);
   transition:
     color 520ms ease,
     text-shadow 520ms ease;
+}
+
+.hero-divider {
+  width: 76px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.32), transparent);
+}
+
+.hero-perk {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 44px;
+  padding-right: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.hero-perk:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hero-perk svg {
+  color: var(--copy-accent);
+  flex: none;
 }
 
 @keyframes copy-focus-in {
@@ -247,16 +301,16 @@ a {
 
 .lure-stage::after {
   position: absolute;
-  bottom: 2%;
-  left: 54%;
+  bottom: 3%;
+  left: 63%;
   z-index: 0;
-  width: min(34vw, 520px);
-  height: 42px;
+  width: min(36vw, 580px);
+  height: 46px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--active-accent), transparent 82%);
+  background: color-mix(in srgb, var(--active-accent), transparent 76%);
   content: "";
-  filter: blur(34px);
-  opacity: calc(0.14 + (var(--stage-glow, 1) * 0.34));
+  filter: blur(40px);
+  opacity: calc(0.16 + (var(--stage-glow, 1) * 0.34));
   pointer-events: none;
   transform: translateX(-50%) perspective(500px) rotateX(68deg);
   transition:
@@ -274,10 +328,10 @@ a {
   z-index: 2;
   transform:
     translate(-50%, -50%)
-    translateZ(calc((1 - max(var(--offset), var(--offset) * -1)) * 180px))
-    rotateY(calc(var(--offset) * -30deg))
-    rotateX(var(--tilt-y))
-    rotateZ(calc(var(--tilt-x) * 0.16))
+    translateZ(calc((1 - max(var(--offset), var(--offset) * -1)) * 220px))
+    rotateY(calc(var(--offset) * -18deg))
+    rotateX(calc(-10deg + (var(--tilt-y) * 0.72)))
+    rotateZ(calc(24deg + (var(--tilt-x) * 0.16)))
     scale(var(--slot-scale));
   transition:
     --glow-strength 900ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -291,10 +345,11 @@ a {
 .lure-card img {
   mix-blend-mode: var(--blend-mode, normal);
   filter:
-    brightness(calc(1.02 + (var(--glow-strength) * 0.04)))
-    contrast(calc(1.14 - (var(--glow-strength) * 0.02)))
-    saturate(calc(1.08 + (var(--glow-strength) * 0.04)))
-    hue-rotate(calc(var(--offset) * 38deg));
+    brightness(calc(1.03 + (var(--glow-strength) * 0.04)))
+    contrast(calc(1.16 - (var(--glow-strength) * 0.02)))
+    saturate(calc(1.12 + (var(--glow-strength) * 0.04)))
+    drop-shadow(0 0 30px color-mix(in srgb, var(--accent), transparent 80%))
+    hue-rotate(calc(var(--offset) * 18deg));
   transition: filter 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -441,8 +496,11 @@ a {
 .best-seller-dot {
   color: rgba(255, 255, 255, 0.55);
   transition:
+    border-color 180ms ease,
     color 180ms ease,
     transform 180ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
 
 .best-seller-dot::before {
@@ -453,6 +511,10 @@ a {
   border: 1px solid currentColor;
   border-radius: 999px;
   content: "";
+}
+
+.best-seller-dot[aria-pressed="true"] {
+  color: #fff;
 }
 
 .best-seller-dot:hover,
@@ -467,8 +529,17 @@ a {
     display: none;
   }
 
+  .site-nav .site-nav-cta {
+    display: inline-grid;
+  }
+
   .hero-copy {
     --copy-base-y: 0;
+  }
+
+  .hero-perk {
+    border-right: 0;
+    padding-right: 0;
   }
 }
 
@@ -481,6 +552,7 @@ a {
       translateX(calc(var(--offset) * 82%))
       rotateY(calc(var(--offset) * -18deg))
       rotateX(var(--tilt-y))
+      rotateZ(-10deg)
       scale(calc(1 - max(var(--offset), var(--offset) * -1) * 0.24));
   }
 }

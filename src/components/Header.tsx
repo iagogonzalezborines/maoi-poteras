@@ -1,4 +1,4 @@
-import { Menu, ShoppingBag } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import logo from '../assets/brand/cromado--logo-sinfondo.png'
 
@@ -52,19 +52,15 @@ function Header() {
         </a>
 
         <nav
-          className="site-nav pointer-events-auto flex justify-self-end items-center justify-end gap-[clamp(18px,1.9vw,30px)] text-xs font-bold uppercase max-[980px]:gap-2.5"
+          className="site-nav pointer-events-auto flex justify-self-end items-center justify-end gap-[clamp(18px,1.9vw,30px)] text-[0.74rem] font-medium uppercase tracking-[0.22em] max-[980px]:gap-2.5"
           aria-label="Tienda"
         >
-          <a href="#shop">Shop</a>
-          <a href="#collection">Collection</a>
-          <a href="#about">About</a>
-          <a href="#cart">Cart</a>
-          <button
-            className="grid size-12 cursor-pointer place-items-center rounded-full border-0 bg-transparent text-stone-100 transition duration-200 hover:-translate-y-px hover:text-[var(--active-accent)] focus-visible:-translate-y-px focus-visible:text-[var(--active-accent)] focus-visible:outline-none max-[640px]:size-10"
-            aria-label="Ver carrito"
-          >
-            <ShoppingBag size={22} strokeWidth={1.5} />
-          </button>
+          <a href="#collection">Coleccion</a>
+          <a href="#about">Tecnologia</a>
+          <a href="#about">Sobre MAOI</a>
+          <a className="site-nav-cta" href="#shop">
+            Comprar
+          </a>
         </nav>
       </div>
     </header>

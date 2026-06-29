@@ -302,7 +302,7 @@ a {
 .lure-stage::after {
   position: absolute;
   bottom: 3%;
-  left: 63%;
+  left: 58%;
   z-index: 0;
   width: min(36vw, 580px);
   height: 46px;

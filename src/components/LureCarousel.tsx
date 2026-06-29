@@ -40,7 +40,7 @@ function LureCarousel({ lures, activeIndex, onSelect }: LureCarouselProps) {
             ? { x: '-16vw', y: '58%', scale: 0.48, z: 1 }
             : wrappedOffset > 0
               ? { x: '90vw', y: '52%', scale: 0.58, z: 1 }
-              : { x: '62vw', y: '51%', scale: 0.84, z: 3 }
+              : { x: '57vw', y: '51%', scale: 0.84, z: 3 }
 
         return (
           <button

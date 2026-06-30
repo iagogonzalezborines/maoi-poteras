@@ -114,9 +114,9 @@ function Hero() {
           </a>
           <a
             className="pointer-events-auto inline-flex min-h-[58px] items-center gap-3 border-b border-[color:var(--copy-accent)] px-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition duration-200 hover:text-[var(--copy-accent)] focus-visible:text-[var(--copy-accent)] focus-visible:outline-none"
-            href="#collection"
+            href="#technology"
           >
-            Ver colores
+            Tecnologia
             <ArrowRight size={17} strokeWidth={1.8} />
           </a>
         </div>

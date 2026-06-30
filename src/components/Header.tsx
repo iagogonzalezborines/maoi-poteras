@@ -55,8 +55,8 @@ function Header() {
           className="site-nav pointer-events-auto flex justify-self-end items-center justify-end gap-[clamp(18px,1.9vw,30px)] text-[0.74rem] font-medium uppercase tracking-[0.22em] max-[980px]:gap-2.5"
           aria-label="Tienda"
         >
-          <a href="#collection">Coleccion</a>
-          <a href="#about">Tecnologia</a>
+          <a href="#about">MAOI</a>
+          <a href="#technology">Tecnologia</a>
           <a href="#about">Sobre MAOI</a>
           <a className="site-nav-cta" href="#shop">
             Comprar

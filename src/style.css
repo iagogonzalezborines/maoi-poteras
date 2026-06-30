@@ -265,6 +265,45 @@ a {
   flex: none;
 }
 
+.why-maoi::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 34% 42% at 50% 0%, rgba(236, 244, 239, 0.12), transparent 70%),
+    radial-gradient(ellipse 62% 46% at 50% 72%, rgba(255, 255, 255, 0.035), transparent 72%),
+    linear-gradient(180deg, #020202 0%, #030303 72%, #0a0a0a 100%);
+  content: "";
+}
+
+.why-title,
+.why-commit-title {
+  font-family: "Arial Narrow", "Impact", "Manrope", sans-serif;
+  letter-spacing: 0.08em;
+  text-shadow:
+    0 0 1px rgba(255, 255, 255, 0.6),
+    0 12px 34px rgba(255, 255, 255, 0.08);
+}
+
+.why-commit-title {
+  letter-spacing: 0.045em;
+  text-shadow: none;
+}
+
+.why-feature {
+  min-height: 178px;
+}
+
+.why-commit-product {
+  width: min(58vw, 720px);
+  filter:
+    grayscale(1)
+    contrast(1.14)
+    brightness(0.74)
+    drop-shadow(0 18px 30px rgba(0, 0, 0, 0.18));
+  transform: rotate(-2deg);
+}
+
 @keyframes copy-focus-in {
   from {
     filter: blur(4px);
